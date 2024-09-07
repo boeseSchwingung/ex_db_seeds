@@ -1,18 +1,9 @@
 defmodule ExDbSeeds do
-  @moduledoc """
-  Documentation for `ExDbSeeds`.
-  """
+  @moduledoc false
 
-  @doc """
-  Hello world.
+  use Application
 
-  ## Examples
-
-      iex> ExDbSeeds.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def start(_type, _args) do
+    ExDbSeeds.Sequence.start_link()
   end
 end

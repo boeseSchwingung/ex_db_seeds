@@ -30,6 +30,7 @@ defmodule ExDbSeeds.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.12"},
       {:ex_doc, ">= 0.0.0", runtime: false},
+      {:inflex, "~> 2.1"},
       {:styler, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
