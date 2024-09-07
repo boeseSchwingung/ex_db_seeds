@@ -1,9 +1,9 @@
-defmodule ExDbSeeds do
+defmodule DbSeeds do
   @moduledoc false
 
   use Application
 
   def start(_type, _args) do
-    ExDbSeeds.Sequence.start_link()
+    DbSeeds.Sequence.start_link()
   end
 end

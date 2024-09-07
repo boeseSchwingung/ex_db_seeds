@@ -1,4 +1,4 @@
-defmodule ExDbSeeds.Seed.SchemaSeed do
+defmodule DbSeeds.Seed.SchemaSeed do
   @moduledoc false
   use Ecto.Schema
 

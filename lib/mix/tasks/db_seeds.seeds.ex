@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.ExDbSeeds.Seeds do
+defmodule Mix.Tasks.DbSeeds.Seeds do
   @moduledoc """
   Displays the up / down seed status for the given repository.
   The repository must be set under `:ecto_repos` in the
@@ -10,8 +10,8 @@ defmodule Mix.Tasks.ExDbSeeds.Seeds do
   started outside our application supervision tree and shutdown
   afterwards.
   ## Examples
-      mix ex_db_seeds.seeds
-      mix ex_db_seeds.seeds -r Custom.Repo
+      mix db_seeds.seeds
+      mix db_seeds.seeds -r Custom.Repo
   ## Command line options
     * `-r`, `--repo` - the repo to obtain the status for
   """
@@ -19,13 +19,13 @@ defmodule Mix.Tasks.ExDbSeeds.Seeds do
   use Mix.Task
 
   import Mix.Ecto
-  import Mix.ExDbSeeds
+  import Mix.DbSeeds
 
   @shortdoc "Displays the repository seed status"
   @recursive true
 
   @doc false
-  def run(args, seeds \\ &ExDbSeeds.Seeder.seeds/3, puts \\ &IO.puts/1) do
+  def run(args, seeds \\ &DbSeeds.Seeder.seeds/3, puts \\ &IO.puts/1) do
     repos =
       parse_repo(args)
       |> List.wrap()
@@ -58,7 +58,7 @@ defmodule Mix.Tasks.ExDbSeeds.Seeds do
       ensure_repo(repo, args)
       path = ensure_seeds_path(repo, opts)
 
-      case ExDbSeeds.Seeder.with_repo(repo, &seeds.(&1, path, opts), mode: :temporary) do
+      case DbSeeds.Seeder.with_repo(repo, &seeds.(&1, path, opts), mode: :temporary) do
         {:ok, repo_status, _} ->
           puts.(
             """

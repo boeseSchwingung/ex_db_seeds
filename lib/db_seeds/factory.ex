@@ -1,33 +1,33 @@
-defmodule ExDbSeeds.Factory do
+defmodule DbSeeds.Factory do
   @moduledoc false
   alias Ecto.Changeset
 
   defmacro __using__(opts) do
     quote do
-      @before_compile ExDbSeeds.Factory
+      @before_compile DbSeeds.Factory
       Module.register_attribute(__MODULE__, :repo, accumulate: false)
       Module.put_attribute(__MODULE__, :repo, unquote(opts[:repo]))
 
-      import ExDbSeeds.Factory, only: [sequence: 1, sequence: 2]
+      import DbSeeds.Factory, only: [sequence: 1, sequence: 2]
 
       def build(factory_name, attrs \\ %{}) do
-        ExDbSeeds.Factory.build(__MODULE__, factory_name, attrs)
+        DbSeeds.Factory.build(__MODULE__, factory_name, attrs)
       end
 
       # def build_pair(factory_name, attrs \\ %{}) do
-      # ExDbSeeds.Factory.build_pair(__MODULE__, factory_name, attrs)
+      # DbSeeds.Factory.build_pair(__MODULE__, factory_name, attrs)
       # end
 
       # def build_list(number_of_factories, factory_name, attrs \\ %{}) do
-      # ExDbSeeds.Factory.build_list(__MODULE__, factory_name, attrs)
+      # DbSeeds.Factory.build_list(__MODULE__, factory_name, attrs)
       # end
 
       def insert(factory_name, attrs \\ %{}) do
-        ExDbSeeds.Factory.insert(__MODULE__, factory_name, attrs)
+        DbSeeds.Factory.insert(__MODULE__, factory_name, attrs)
       end
 
       def params_for(factory_name, attrs \\ %{}) do
-        ExDbSeeds.Factory.params_for(__MODULE__, factory_name, attrs)
+        DbSeeds.Factory.params_for(__MODULE__, factory_name, attrs)
       end
 
       def factory(factory_name) do
@@ -74,9 +74,9 @@ defmodule ExDbSeeds.Factory do
     |> handle_params_for(attrs)
   end
 
-  def sequence(name), do: ExDbSeeds.Sequence.next(name)
+  def sequence(name), do: DbSeeds.Sequence.next(name)
 
-  def sequence(name, formatter), do: ExDbSeeds.Sequence.next(name, formatter)
+  def sequence(name, formatter), do: DbSeeds.Sequence.next(name, formatter)
 
   # Private ##########
 

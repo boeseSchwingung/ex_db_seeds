@@ -1,13 +1,13 @@
-defmodule ExDbSeeds.Seed do
+defmodule DbSeeds.Seed do
   @moduledoc false
 
   defmacro __using__(_opts) do
     quote location: :keep do
-      import ExDbSeeds.Seed
+      import DbSeeds.Seed
       @disable_ddl_transaction false
       Module.register_attribute(__MODULE__, :envs, accumulate: true)
       Module.register_attribute(__MODULE__, :tags, accumulate: true)
-      @before_compile ExDbSeeds.Seed
+      @before_compile DbSeeds.Seed
 
       def down(repo) do
       end

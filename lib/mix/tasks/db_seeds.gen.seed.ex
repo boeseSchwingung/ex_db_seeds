@@ -1,16 +1,16 @@
-defmodule Mix.Tasks.ExDbSeeds.Gen.Seed do
+defmodule Mix.Tasks.DbSeeds.Gen.Seed do
   @moduledoc false
 
   use Mix.Task
 
   import Mix.Ecto
-  import Mix.ExDbSeeds
+  import Mix.DbSeeds
   import Mix.Generator
 
   @shortdoc "Executes the seeds for specified env and tags down"
 
   def run(args) do
-    no_umbrella!("ex_db_seeds.gen.seed")
+    no_umbrella!("db_seeds.gen.seed")
     repos = parse_repo(args)
 
     Enum.each(repos, fn repo ->
@@ -31,7 +31,7 @@ defmodule Mix.Tasks.ExDbSeeds.Gen.Seed do
 
         {_, _, _} ->
           Mix.raise(
-            "expected ex_db_seeds.gen.seed to receive the seed file name, " <>
+            "expected db_seeds.gen.seed to receive the seed file name, " <>
               "got: #{inspect(Enum.join(args, " "))}"
           )
       end

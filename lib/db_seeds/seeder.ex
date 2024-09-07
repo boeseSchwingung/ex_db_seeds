@@ -1,10 +1,10 @@
-defmodule ExDbSeeds.Seeder do
+defmodule DbSeeds.Seeder do
   @moduledoc false
 
   require Logger
 
-  alias ExDbSeeds.Seed.Runner
-  alias ExDbSeeds.Seed.SchemaSeed
+  alias DbSeeds.Seed.Runner
+  alias DbSeeds.Seed.SchemaSeed
 
   @doc """
   Gets all migrated versions.
@@ -42,7 +42,7 @@ defmodule ExDbSeeds.Seeder do
     run_maybe_in_transaction(repo, module, fn ->
       attempt(repo, module, :forward, :up, :up, opts) ||
         attempt(repo, module, :forward, :change, :up, opts) ||
-        raise ExDbSeeds.SeedError,
+        raise DbSeeds.SeedError,
           message: "#{inspect(module)} does not implement a `up/0` function"
 
       SchemaSeed.up(repo, version)
@@ -74,7 +74,7 @@ defmodule ExDbSeeds.Seeder do
     run_maybe_in_transaction(repo, module, fn ->
       attempt(repo, module, :forward, :down, :down, opts) ||
         attempt(repo, module, :backward, :change, :down, opts) ||
-        raise ExDbSeeds.SeedError,
+        raise DbSeeds.SeedError,
           message: "#{inspect(module)} does not implement a `down/0` function"
 
       SchemaSeed.down(repo, version)
@@ -118,7 +118,7 @@ defmodule ExDbSeeds.Seeder do
   """
   @spec run(Ecto.Repo.t(), binary, atom, Keyword.t()) :: [integer]
   def run(repo, directory, direction, opts) do
-    maybe_ensure_all_started(Application.get_env(:ex_db_seeds, :ensure_all_started))
+    maybe_ensure_all_started(Application.get_env(:db_seeds, :ensure_all_started))
 
     versions = seeded_versions(repo)
 
@@ -279,8 +279,8 @@ defmodule ExDbSeeds.Seeder do
   defp ensure_no_duplication([]), do: :ok
 
   defp raise_no_seed_in_file(file) do
-    raise ExDbSeeds.SeedError,
-      message: "file #{Path.relative_to_cwd(file)} does not contain any ExDbSeeds.Seed"
+    raise DbSeeds.SeedError,
+      message: "file #{Path.relative_to_cwd(file)} does not contain any DbSeeds.Seed"
   end
 
   defp has_env_and_any_tags?(_mod, nil, _tags) do

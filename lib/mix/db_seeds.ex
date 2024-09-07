@@ -1,4 +1,4 @@
-defmodule Mix.ExDbSeeds do
+defmodule Mix.DbSeeds do
   @moduledoc false
 
   import Mix.EctoSQL
@@ -15,21 +15,6 @@ defmodule Mix.ExDbSeeds do
     end
 
     path
-  end
-
-  defp raise_missing_seeds(path, repo) do
-    Mix.raise("""
-    Could not find seeds directory #{inspect(path)}
-    for repo #{inspect(repo)}.
-
-    This may be because you are in a new project and the
-    migration directory has not been created yet. Creating an
-    empty directory at the path above will fix this error.
-
-    If you expected existing seeds to be found, please
-    make sure your repository has been properly configured
-    and the configured path exists.
-    """)
   end
 
   @doc """
@@ -85,5 +70,20 @@ defmodule Mix.ExDbSeeds do
   @spec seeds_path(Ecto.Repo.t()) :: String.t()
   def seeds_path(repo) do
     Path.join(source_repo_priv(repo), "seeds")
+  end
+
+  defp raise_missing_seeds(path, repo) do
+    Mix.raise("""
+    Could not find seeds directory #{inspect(path)}
+    for repo #{inspect(repo)}.
+
+    This may be because you are in a new project and the
+    migration directory has not been created yet. Creating an
+    empty directory at the path above will fix this error.
+
+    If you expected existing seeds to be found, please
+    make sure your repository has been properly configured
+    and the configured path exists.
+    """)
   end
 end

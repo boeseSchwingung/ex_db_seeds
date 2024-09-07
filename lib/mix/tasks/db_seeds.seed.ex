@@ -1,14 +1,14 @@
-defmodule Mix.Tasks.ExDbSeeds.Seed do
+defmodule Mix.Tasks.DbSeeds.Seed do
   @moduledoc false
 
   use Mix.Task
 
   import Mix.Ecto
-  import Mix.ExDbSeeds
+  import Mix.DbSeeds
 
   @shortdoc "Executes the seeds for specified env and tags up"
 
-  def run(args, seeder \\ &ExDbSeeds.Seeder.run/4) do
+  def run(args, seeder \\ &DbSeeds.Seeder.run/4) do
     repos =
       parse_repo(args)
       |> List.wrap()
@@ -77,7 +77,7 @@ defmodule Mix.Tasks.ExDbSeeds.Seed do
           &seeder.(&1, path, :up, opts)
         end
 
-      case ExDbSeeds.Seeder.with_repo(repo, fun, [mode: :temporary] ++ opts) do
+      case DbSeeds.Seeder.with_repo(repo, fun, [mode: :temporary] ++ opts) do
         {:ok, migrated, apps} ->
           restart_apps_if_migrated(apps, migrated)
 

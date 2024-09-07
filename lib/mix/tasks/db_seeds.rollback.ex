@@ -1,14 +1,14 @@
-defmodule Mix.Tasks.ExDbSeeds.Rollback do
+defmodule Mix.Tasks.DbSeeds.Rollback do
   @moduledoc false
 
   use Mix.Task
 
   import Mix.Ecto
-  import Mix.ExDbSeeds
+  import Mix.DbSeeds
 
   @shortdoc "Executes the seeds for specified env and tags down"
 
-  def run(args, seeder \\ &ExDbSeeds.Seeder.run/4) do
+  def run(args, seeder \\ &DbSeeds.Seeder.run/4) do
     repos =
       parse_repo(args)
       |> List.wrap()
@@ -63,7 +63,7 @@ defmodule Mix.Tasks.ExDbSeeds.Rollback do
           &seeder.(&1, path, :down, opts)
         end
 
-      case ExDbSeeds.Seeder.with_repo(repo, fun, [mode: :temporary] ++ opts) do
+      case DbSeeds.Seeder.with_repo(repo, fun, [mode: :temporary] ++ opts) do
         {:ok, migrated, apps} ->
           restart_apps_if_migrated(apps, migrated)
 

@@ -21,6 +21,7 @@ erl_crash.dump
 
 # Ignore package tarball (built via "mix hex.build").
 ex_db_seeds-*.tar
+db_seeds-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/

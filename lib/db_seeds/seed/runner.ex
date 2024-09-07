@@ -1,4 +1,4 @@
-defmodule ExDbSeeds.Seed.Runner do
+defmodule DbSeeds.Seed.Runner do
   @moduledoc false
 
   require Logger
@@ -54,12 +54,12 @@ defmodule ExDbSeeds.Seed.Runner do
   end
 
   defp handle_run_seed({_time, {:error, %{model: %{id: nil} = model} = changeset}}, _opts) do
-    raise ExDbSeeds.SeedError,
+    raise DbSeeds.SeedError,
           "Failed to create #{inspect(model.__struct__)} due to #{inspect(changeset.errors)} with changes #{inspect(changeset.changes)}"
   end
 
   defp handle_run_seed({_time, {:error, %{model: model} = changeset}}, _opts) do
-    raise ExDbSeeds.SeedError,
+    raise DbSeeds.SeedError,
           "Failed to update #{inspect(model.__struct__)} due to #{inspect(changeset.errors)} with changes #{inspect(changeset.changes)}"
   end
 

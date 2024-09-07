@@ -1,9 +1,9 @@
-defmodule ExDbSeeds.MixProject do
+defmodule DbSeeds.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :ex_db_seeds,
+      app: :db_seeds,
       version: "0.1.0",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
@@ -11,7 +11,7 @@ defmodule ExDbSeeds.MixProject do
       description: description(),
       package: package(),
       docs: [
-        main: "Ex DB Seeds",
+        main: "DB Seeds",
         extras: ["README.md"]
       ]
     ]
@@ -42,12 +42,12 @@ defmodule ExDbSeeds.MixProject do
   defp package do
     [
       # This option is only needed when you don't want to use the OTP application name
-      name: "ex_db_seeds",
+      name: "db_seeds",
       organization: "",
       # These are the default files included in the package
       files: ~w(lib .formatter.exs mix.exs README*),
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/boeseSchwingung/ex_db_seeds"}
+      links: %{"GitHub" => "https://github.com/boeseSchwingung/db_seeds"}
     ]
   end
 end

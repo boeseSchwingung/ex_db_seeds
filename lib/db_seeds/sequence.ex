@@ -1,4 +1,4 @@
-defmodule ExDbSeeds.Sequence do
+defmodule DbSeeds.Sequence do
   @moduledoc false
 
   def start_link do
