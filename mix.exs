@@ -11,7 +11,7 @@ defmodule DbSeeds.MixProject do
       description: description(),
       package: package(),
       docs: [
-        main: "DB Seeds",
+        main: "DBSeeds",
         extras: ["README.md"]
       ]
     ]
@@ -43,7 +43,7 @@ defmodule DbSeeds.MixProject do
     [
       # This option is only needed when you don't want to use the OTP application name
       name: "db_seeds",
-      organization: "",
+      organization: "hexpm",
       # These are the default files included in the package
       files: ~w(lib .formatter.exs mix.exs README*),
       licenses: ["MIT"],
